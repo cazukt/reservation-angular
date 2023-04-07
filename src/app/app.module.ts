@@ -21,4 +21,4 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
