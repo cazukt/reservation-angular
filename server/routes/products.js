@@ -8,4 +8,14 @@ router.get('',async function(req,res){
   res.json(foundProducts)
 })
 
+router.get('/:productId',async function(req,res){
+  const productId=req.params.productId
+  try {
+    foundProduct=await Product.findById(productId)
+    res.json(foundProduct)
+  } catch (err) {
+    res.status(422).send({errors:[{title:'product error',detail:'produnt not found'}]})
+  }
+})
+
 module.exports=router
