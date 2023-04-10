@@ -1,16 +1,15 @@
 const express=require('express')
 const mongoose = require("mongoose")
 const config =require('./config/dev')
-const FakeDB=require('./fake-db')
+const FakeDb = require('./fake-db')
 
-//mongoose.connect("mongodb+srv://cazukt:taka0610mongo@cluster0.xoezhha.mongodb.net/blogUserDatabase?retryWrites=true&w=majority",{
 mongoose.connect(config.DB_URI,{
   // useNewUrlParser:true,
   // useUnifiedTopplogy:true
 }).then(
   ()=>{
-    const fakeDb=new FakeDB()
-    fakeDb.seeDb()
+    const fakeDb=new FakeDb()
+    fakeDb.initDb()
   }
 )
 
