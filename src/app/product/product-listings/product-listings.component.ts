@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ProductService } from '../shared/product.servie';
-// import { products } from '../../products';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-listings',
@@ -16,6 +16,32 @@ export class ProductListComponent implements OnInit{
 
   ngOnInit(){
     this.products=this.productService.getProducts()
+
+    const observable = new Observable((subscriber) => {
+      subscriber.next(1);
+      subscriber.next(2);
+      subscriber.error('エラー発生');
+      setTimeout(() => {
+        subscriber.next(4);
+        subscriber.complete();
+      }, 2000);
+    });
+
+    console.log('subscribe前');
+    
+    observable.subscribe({
+      next(data) {
+        console.log('次のデータが出力されました:' + data);
+      },
+      error(err) {
+        console.error('次のエラーが発生しました:' + err);
+      },
+      complete() {
+        console.log('完了しました');
+      },
+    });
+    console.log('subscribeから抜けました');
+
   }
 
 }
