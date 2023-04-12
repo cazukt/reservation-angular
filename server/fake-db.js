@@ -16,7 +16,7 @@ class FakeDb{
         heddingtext3:'ヘッディングサンプルテキスト3'
       },
       {
-        // coverImage:"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==",
+        //coverImage:"data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==",
         coverImage:"./assets/img/phone-cover.jpg",
         name: 'Phone Mini',
         price: 699,
