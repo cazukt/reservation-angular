@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript解説 DOM操作編</title>
+    <link rel="stylesheet" href="reset.css" />
+    <style>
+      body {
+        margin: 40px;
+      }
+      .example {
+        margin: 40px 0;
+      }
+      .button {
+        width: 300px;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        background-color: #2e7c9f;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        transition: opacity 0.25s;
+      }
+      .button:hover {
+        cursor: pointer;
+        opacity: 0.75;
+      }
+      .button:disabled {
+        background-color: #999;
+      }
+      .button:disabled:hover {
+        opacity: 1;
+      }
+      .color {
+        display: flex;
+        justify-content: space-between;
+      }
+      .color .button {
+        width: calc((100% - 10px) / 3);
+        color: #333;
+      }
+      .button-blue {
+        background-color: #5fccee;
+      }
+      .button-yellow {
+        background-color: #ffe390;
+      }
+      .button-orange {
+        background-color: #ffb039;
+      }
+      .list-box {
+        padding: 20px;
+        background-color: #cef2ff;
+        line-height: 1.5;
+      }
+      .list-box ul {
+        margin-top: 10px;
+      }
+      .list-box ul:empty {
+        margin: 0;
+      }
+      .list-box li::before {
+        content: '・';
+      }
+    </style>
+  </head>
+  <body>
+    <div class="example example01">
+      <button id="button" class="button">クリックしてね！</button>
+    </div>
+
+    <div class="example example02">
+      <button id="button-add" class="button">リスト要素を追加</button>
+      <button id="button-clear" class="button">リスト要素を削除</button>
+
+      <div class="list-box">
+        <h2>リスト要素一覧</h2>
+        <ul id="list"></ul>
+      </div>
+    </div>
+
+    <div class="example example03">
+      <div class="color">
+        <button class="button button-blue">ブルー</button>
+        <button class="button button-yellow">イエロー</button>
+        <button class="button button-orange">オレンジ</button>
+      </div>
+      <div class="list-box">
+        <h2>クリックされた色一覧</h2>
+        <ul id="list-color"></ul>
+      </div>
+    </div>
+
+    <script>
+      'use strict'
+
+      // ボタンをクリックしたらテキストを変更する
+      const button = document.getElementById('button')
+
+      button.addEventListener('click', function () {
+        // this.innerHTML = 'クリックありがとう！';
+        this.innerHTML = 'クリック済み'
+        this.setAttribute('disabled', true)
+      })
+
+      // ボタンをクリックしたらリスト要素を増やす / 削除する
+      const buttonAdd = document.getElementById('button-add')
+      const buttonClear = document.getElementById('button-clear')
+      const list = document.getElementById('list')
+
+      buttonAdd.addEventListener('click', function () {
+        const element = document.createElement('li')
+        element.innerHTML = 'リスト'
+        list.appendChild(element)
+      })
+
+      buttonClear.addEventListener('click', function () {
+        // list.removeChild(list.lastChild);
+        while (list.lastChild) {
+          list.removeChild(list.lastChild)
+        }
+      })
+
+      // 要素を取得
+      // document.querySelector();
+      // document.querySelectorAll();
+
+      // document.querySelector('.color .button-blue');
+      // document.querySelector('.color .button:last-of-type');
+      // document.querySelectorAll('.button');
+
+      // document.getElementById
+      // document.getElementsByClassName
+
+      // 特定の要素を取得してコンソールに表示
+      const element01 = document.querySelector('.color .button-blue')
+      console.log('「.color .button-blue」で取得した要素', element01)
+
+      const element02 = document.querySelector('.color .button:last-of-type')
+      console.log('「.color .button:last-of-type」で取得した要素', element02)
+
+      const element03 = document.querySelectorAll('.button')
+      console.log('「.button」で取得した要素', element03)
+
+      // ボタンをクリックしたらリスト要素を増やす
+      const buttonColor = document.querySelectorAll('.color .button')
+      const listColor = document.getElementById('list-color')
+
+      const buttonColorClick = function () {
+        let element = document.createElement('li')
+        element.innerHTML = this.innerHTML
+        listColor.appendChild(element)
+      }
+
+      for (let i = 0; i < buttonColor.length; i++) {
+        buttonColor[i].addEventListener('click', buttonColorClick)
+      }
+    </script>
+  </body>
+</html>

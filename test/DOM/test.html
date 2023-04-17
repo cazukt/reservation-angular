@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .button {
+        width: 300px;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        background-color: #2e7c9f;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        transition: opacity 0.25s;
+      }
+      .btn.clicked {
+        border: 2px solid red;
+        border-radius: 2px;
+        background-color: red;
+        color: #fff;
+        font-weight: bold;
+      }
+      .btn.clicked2 {
+        border: 2px solid blue;
+        border-radius: 2px;
+        background-color: blue;
+        color: #fff;
+        font-weight: bold;
+      }
+      .button:disabled {
+        background-color: #999;
+      }
+      .button.button-blue {
+        background-color: blue;
+      }
+      .button.button-yellow {
+        background-color: yellow;
+      }
+      .button.button-orange {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>js test</h3>
+
+    <button class="btn" id="btn01">btn1</button>
+    <button class="btn">btn2</button>
+    <button class="btn">btn3</button>
+
+    <br /><button id="button" class="button">click!</button><br />
+
+    <button id="button-add" class="button">リスト要素を追加</button><br />
+    <button id="button-clear" class="button">リスト要素を削除</button><br />
+    <div class="list-box">
+      <h2>リスト要素一覧</h2>
+      <ol id="list"></ol>
+    </div>
+
+    <div class="color">
+      <button class="button button-blue">ブルー</button>
+      <button class="button button-yellow">イエロー</button>
+      <button class="button button-orange">オレンジ</button>
+    </div>
+    <div class="list-box">
+      <h2>クリックされた色一覧</h2>
+      <ol id="list-color"></ol>
+    </div>
+
+    <script src="test.js"></script>
+  </body>
+</html>
