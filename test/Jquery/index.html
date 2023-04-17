@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="test.css" />
+    <title>Document</title>
+    <style>
+      ul {
+        display: none;
+      }
+      ul.visible {
+        display: block;
+      }
+      .faq dd {
+        display: none;
+        padding:20px;
+        margin: 0 0 10px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>JavaScript</h1>
+      <ul>
+        <li id="li1">1</li>
+        <li id="li2">2</li>
+        <li id="li3">3</li>
+      </ul>
+      <button>内容表示</button>
+      <button id="button1">ボタン1</button>
+      <button id="button2">ボタン2</button>
+      <button id="button3" class="primary-button">ボタン3</button>
+    </section>
+
+    <div class="faq">
+      <h3><i class="fa fa-envelope-open-o" aria-hidden="true"></i>よくある質問</h3>
+      <dl>
+        <dt>
+          <i class="fa fa-question-circle-o" aria-hidden="true"></i>プログラミングスキルは必要ですか？         </dt>
+        </dt>
+        <dd>
+          いいえ、必要ありません。
+        </dd>
+        <dt>
+          <i class="fa fa-question-circle-o" aria-hidden="true"></i>プログラミングスキルは必要？         </dt>
+        </dt>
+        <dd>
+          はい、必要です。
+        </dd>
+      </dl>
+    </div>
+
+    <script>
+      document.querySelector('button').addEventListener('click', function () {
+        document.querySelector('ul').classList.add('visible')
+      })
+    </script>
+    <script src="test.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $('.faq dt').on('click', function () {
+          // $('.faq dd').slideToggle().next;
+          $(this).next().slideToggle();
+          $(this).toggleClass("open")
+        })
+      })
+    </script>
+  </body>
+</html>
