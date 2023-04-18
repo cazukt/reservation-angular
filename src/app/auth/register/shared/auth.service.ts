@@ -25,7 +25,6 @@ export class AuthService {
         const decordedToken=jwt.decodeToken(JSON.stringify(token))
         localStorage.setItem('app-auth', JSON.stringify(token))
         localStorage.setItem('app-meta', JSON.stringify(decordedToken))
-        debugger
         return token
       })
     )
