@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
         console.log(token)
         this.router.navigate(['/products'])
       },
+      
       (err: HttpErrorResponse) => {
         console.error(err)
         this.errors = err.error.errors
