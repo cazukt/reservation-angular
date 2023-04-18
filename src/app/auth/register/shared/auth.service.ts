@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
+import { JwtHelperService } from '@auth0/angular-jwt'
+
+const jwt = new JwtHelperService()
 
 @Injectable()
 export class AuthService {
@@ -19,11 +22,12 @@ export class AuthService {
   login(userData: any): Observable<any> {
     return this.http.post('/api/v1/users/login', userData).pipe(
       map((token) => {
-        debugger
+        const decordedToken=jwt.decodeToken(JSON.stringify(token))
         localStorage.setItem('app-auth', JSON.stringify(token))
+        localStorage.setItem('app-meta', JSON.stringify(decordedToken))
+        debugger
         return token
       })
     )
   }
-
 }
