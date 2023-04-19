@@ -1,29 +1,30 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AuthService } from './register/shared/auth.service';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { CommonModule } from '@angular/common'
+import { LoginComponent } from './login/login.component'
+import { RegisterComponent } from './register/register.component'
+import { AuthService } from './shared/auth.service'
+import { FormsModule } from '@angular/forms'
+import { AuthGuard } from './shared/auth.guard'
+import { TokenInterceptor } from './shared/token.intercepter'
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }     
-];
+  { path: 'register', component: RegisterComponent },
+]
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent,
-  ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    FormsModule
-  ],
+  declarations: [LoginComponent, RegisterComponent],
+  imports: [RouterModule.forChild(routes), CommonModule, FormsModule],
   providers: [
-    AuthService
+    AuthService, 
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, 
+      useClass: TokenInterceptor,
+      multi: true 
+    }
   ],
-  bootstrap: []
+  bootstrap: [],
 })
-export class AuthModule { }
+export class AuthModule {}

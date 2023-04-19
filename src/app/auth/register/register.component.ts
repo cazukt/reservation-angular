@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
-import { AuthService } from './shared/auth.service'
+import { AuthService } from '../shared/auth.service'
 import { HttpErrorResponse } from '@angular/common/http'
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register',

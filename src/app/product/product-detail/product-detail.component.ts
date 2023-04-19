@@ -17,14 +17,12 @@ export class ProductDetailComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       // this.product=this.prodectService.getProductById(params.get('productId')!)
       const productObservable = this.prodectService.getProductById(params.get('productId')!)
-      productObservable.subscribe()
-
       productObservable.subscribe({
         next: (data) => {
           this.product = data
         },
         error: (err) => {
-          console.error('次のエラーが発生しました:' + err)
+          console.error('次のエラーが発生しました:' +err)
         },
       })
     })
